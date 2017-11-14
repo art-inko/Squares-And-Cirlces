@@ -1,8 +1,6 @@
 package SquaresAndCirlces;
 // TEST
-// TEST
-// TEST
-// TEST
+
 import java.awt.Graphics;
 
 public interface iDrawable {
