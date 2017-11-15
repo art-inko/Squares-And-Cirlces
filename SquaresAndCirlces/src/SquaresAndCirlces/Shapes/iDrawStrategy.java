@@ -1,9 +1,9 @@
-package SquaresAndCirlces;
-// TEST
+package SquaresAndCirlces.Shapes;
+
 
 import java.awt.Graphics;
 
-public interface iDrawable {
+public interface iDrawStrategy {
 
     public void draw(Graphics g);
 
