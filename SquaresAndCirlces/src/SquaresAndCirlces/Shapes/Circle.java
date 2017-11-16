@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package SquaresAndCirlces.Shapes;
 
-/**
- *
- * @author Артём
- */
-public class Circle {
+
+public class Circle implements iFigure {
+
+    @Override
+    public void draw() {
+       g.fillOval(elementsInfo.get(i).getX() - elementsInfo.get(i).getSize() / 2, elementsInfo.get(i).getY() - elementsInfo.get(i).getSize() / 2, elementsInfo.get(i).getSize(), elementsInfo.get(i).getSize());
+            }
     
 }
