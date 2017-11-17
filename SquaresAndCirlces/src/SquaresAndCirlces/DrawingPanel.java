@@ -12,17 +12,10 @@ public class DrawingPanel extends javax.swing.JPanel implements MouseListener {
 
     int X, Y;
     private ArrayList<ElementInfo> elementsInfo = new ArrayList();
-    private String currentShape;
     private int currentSize;
     private Color myColor = Color.BLUE;
-    private boolean canWeDraw = false;
     private ElementInfo currentDrawingElementInfo = new ElementInfo();
     private iDrawStrategy drawStrategy = new Square();
-
-// ============ Конструктор =============
-    public DrawingPanel() {
-        initComponents();
-    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -93,26 +86,13 @@ public class DrawingPanel extends javax.swing.JPanel implements MouseListener {
         return elementsInfo;
     }
 
-    public void setCurrentShape(String currentShape) {
-        this.currentShape = currentShape;
-    }
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(myColor);
-
         for (int i = 0; i < elementsInfo.size(); i++) {
-
             drawStrategy.draw(g, elementsInfo.get(i).getX(), elementsInfo.get(i).getY(), elementsInfo.get(i).getSize());
-
-//            if (currentShape.equals("Квадрат")) {
-//                g.fillRect(elementsInfo.get(i).getX() - elementsInfo.get(i).getSize() / 2, elementsInfo.get(i).getY() - elementsInfo.get(i).getSize() / 2, elementsInfo.get(i).getSize(), elementsInfo.get(i).getSize());
-//            } else {
-//                g.fillOval(elementsInfo.get(i).getX() - elementsInfo.get(i).getSize() / 2, elementsInfo.get(i).getY() - elementsInfo.get(i).getSize() / 2, elementsInfo.get(i).getSize(), elementsInfo.get(i).getSize());
-//            }
         }
-
     }
 
     public void setDrawStrategy(iDrawStrategy drawStrategy) {

@@ -10,19 +10,14 @@ import javax.swing.ButtonGroup;
 public class MyJFrame extends javax.swing.JFrame {
 
     public MyJFrame() {
-
         initComponents();
         addListeners();
         buttonGroup1.add(squareJRadioButton);
         buttonGroup1.add(circleJRadioButton);
         squareJRadioButton.setSelected(true);
-        System.out.println(sizeSlider.getValue());
-        currentSize = 25;
+        int currentSize = 25;
         sizeTextField.setText(new Integer(currentSize).toString());
         drawingPanel.setCurrentSize(currentSize);
-        currentShape = getSelectedButtonText(buttonGroup1);
-        drawingPanel.setCurrentShape(currentShape);
-
     }
 
     @SuppressWarnings("unchecked")
@@ -191,42 +186,30 @@ public class MyJFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     // ============= Мои переменные ===============
-    int currentSize;
-    String currentShape;
+//    int currentSize;
 
     // ============= Мои методы ===================
     void addListeners() {
         drawingPanel.addMouseListener(drawingPanel);
-
     }
 
     public String getSelectedButtonText(ButtonGroup buttonGroup) {
         for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
             AbstractButton button = buttons.nextElement();
-
             if (button.isSelected()) {
                 return button.getText();
             }
         }
-
         return null;
     }
 
     public void radioButtonStateChanged() {
-        // set drawing Strategy
-        // if делаем тут
-
-        currentShape = getSelectedButtonText(buttonGroup1);
-//        drawingPanel.setCurrentShape(currentShape);
-        System.out.println(currentShape);
-        switch (currentShape) {
+        switch (getSelectedButtonText(buttonGroup1)) {
             case "Квадрат":
                 drawingPanel.setDrawStrategy(new Square());
-                System.out.println("Test Квадрат");
                 break;
             case "Круг":
                 drawingPanel.setDrawStrategy(new Circle());
-                System.out.println("Test Круг");
                 break;
         }
         drawingPanel.repaint();
