@@ -1,5 +1,7 @@
 package SquaresAndCirlces;
 
+import SquaresAndCirlces.Shapes.Circle;
+import SquaresAndCirlces.Shapes.Square;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
@@ -20,7 +22,7 @@ public class MyJFrame extends javax.swing.JFrame {
         drawingPanel.setCurrentSize(currentSize);
         currentShape = getSelectedButtonText(buttonGroup1);
         drawingPanel.setCurrentShape(currentShape);
-        drawingPanel.setCanWeDraw(false);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -32,12 +34,9 @@ public class MyJFrame extends javax.swing.JFrame {
         circleJRadioButton = new javax.swing.JRadioButton();
         clearButton = new javax.swing.JButton();
         sizeSlider = new javax.swing.JSlider();
-        printArrayButton = new javax.swing.JButton();
         sizeTextField = new javax.swing.JTextField();
         colorComboBox = new javax.swing.JComboBox<>();
-        drawingCheckBox = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
-        newJPanel1 = new SquaresAndCirlces.DrawingPanel();
+        drawingPanel = new SquaresAndCirlces.DrawingPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,13 +75,6 @@ public class MyJFrame extends javax.swing.JFrame {
             }
         });
 
-        printArrayButton.setText("Печатать массив");
-        printArrayButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                printArrayButtonActionPerformed(evt);
-            }
-        });
-
         sizeTextField.setText("размер");
 
         colorComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Синий", "Желтый ", "Красный", "Зеленый" }));
@@ -92,28 +84,16 @@ public class MyJFrame extends javax.swing.JFrame {
             }
         });
 
-        drawingCheckBox.setText("Режим Рисования");
-        drawingCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                drawingCheckBoxActionPerformed(evt);
-            }
-        });
+        drawingPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setText("Печатать рисовальный массив");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout newJPanel1Layout = new javax.swing.GroupLayout(newJPanel1);
-        newJPanel1.setLayout(newJPanel1Layout);
-        newJPanel1Layout.setHorizontalGroup(
-            newJPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 697, Short.MAX_VALUE)
+        javax.swing.GroupLayout drawingPanelLayout = new javax.swing.GroupLayout(drawingPanel);
+        drawingPanel.setLayout(drawingPanelLayout);
+        drawingPanelLayout.setHorizontalGroup(
+            drawingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 709, Short.MAX_VALUE)
         );
-        newJPanel1Layout.setVerticalGroup(
-            newJPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        drawingPanelLayout.setVerticalGroup(
+            drawingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -123,17 +103,15 @@ public class MyJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(newJPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(drawingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(drawingCheckBox)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(squareJRadioButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(circleJRadioButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(colorComboBox, 0, 155, Short.MAX_VALUE)))
-                        .addGap(75, 75, 75))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(squareJRadioButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(circleJRadioButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(colorComboBox, 0, 155, Short.MAX_VALUE))
+                        .addGap(81, 81, 81))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(sizeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
@@ -141,10 +119,7 @@ public class MyJFrame extends javax.swing.JFrame {
                         .addComponent(sizeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(114, 114, 114))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(clearButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(printArrayButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -162,32 +137,16 @@ public class MyJFrame extends javax.swing.JFrame {
                         .addComponent(sizeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(colorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
-                        .addComponent(drawingCheckBox)
-                        .addGap(68, 68, 68)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(printArrayButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 375, Short.MAX_VALUE)
                         .addComponent(clearButton))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(newJPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(drawingPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void printArrayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printArrayButtonActionPerformed
-
-        ArrayList<ElementInfo> temp = drawingPanel.getElementsInfo();
-        for (int i = 0; i < temp.size(); i++) {
-            System.out.println(i + ". X = " + temp.get(i).getX());
-            System.out.println(i + ". Y = " + temp.get(i).getY());
-        }
-
-    }//GEN-LAST:event_printArrayButtonActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         drawingPanel.getElementsInfo().clear();
@@ -212,15 +171,6 @@ public class MyJFrame extends javax.swing.JFrame {
         drawingPanel.changeColor(colorComboBox.getSelectedIndex());
     }//GEN-LAST:event_colorComboBoxActionPerformed
 
-    private void drawingCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drawingCheckBoxActionPerformed
-        drawingPanel.setCanWeDraw(drawingCheckBox.isSelected());
-    }//GEN-LAST:event_drawingCheckBoxActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -234,10 +184,7 @@ public class MyJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton circleJRadioButton;
     private javax.swing.JButton clearButton;
     private javax.swing.JComboBox<String> colorComboBox;
-    private javax.swing.JCheckBox drawingCheckBox;
-    private javax.swing.JButton jButton1;
-    private SquaresAndCirlces.DrawingPanel newJPanel1;
-    private javax.swing.JButton printArrayButton;
+    private SquaresAndCirlces.DrawingPanel drawingPanel;
     private javax.swing.JSlider sizeSlider;
     private javax.swing.JTextField sizeTextField;
     private javax.swing.JRadioButton squareJRadioButton;
@@ -246,12 +193,11 @@ public class MyJFrame extends javax.swing.JFrame {
     // ============= Мои переменные ===============
     int currentSize;
     String currentShape;
-    boolean canWeDraw;
-    // ============= Мои методы ===================
 
+    // ============= Мои методы ===================
     void addListeners() {
         drawingPanel.addMouseListener(drawingPanel);
-        drawingPanel.addMouseMotionListener(drawingPanel);
+
     }
 
     public String getSelectedButtonText(ButtonGroup buttonGroup) {
@@ -269,10 +215,20 @@ public class MyJFrame extends javax.swing.JFrame {
     public void radioButtonStateChanged() {
         // set drawing Strategy
         // if делаем тут
+
         currentShape = getSelectedButtonText(buttonGroup1);
+//        drawingPanel.setCurrentShape(currentShape);
         System.out.println(currentShape);
-        drawingPanel.setCurrentShape(currentShape);
-        System.out.println(currentShape);
+        switch (currentShape) {
+            case "Квадрат":
+                drawingPanel.setDrawStrategy(new Square());
+                System.out.println("Test Квадрат");
+                break;
+            case "Круг":
+                drawingPanel.setDrawStrategy(new Circle());
+                System.out.println("Test Круг");
+                break;
+        }
         drawingPanel.repaint();
     }
 
