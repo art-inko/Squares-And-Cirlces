@@ -9,12 +9,12 @@ public class ElementInfo {
     //==================== Переменные ===============
     private int X, Y;
     private int size;
-    iDrawStrategy DrawStrategy;
+    
     Graphics g;
 
     //==================== Геттеры и Сеттеры ========
     public void setDrawStrategy(iDrawStrategy DrawStrategy) {
-        this.DrawStrategy = DrawStrategy;
+        this.drawStrategy = DrawStrategy;
     }
     
     public void setInfo(int X, int Y, int size) {
@@ -37,7 +37,7 @@ public class ElementInfo {
     }
     
     public void draw() {
-       DrawStrategy.draw(g, X, Y, size);
+       drawStrategy.draw(g, X, Y, size);
     }
     
 }

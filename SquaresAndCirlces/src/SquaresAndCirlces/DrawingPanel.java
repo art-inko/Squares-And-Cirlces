@@ -1,6 +1,9 @@
 package SquaresAndCirlces;
 
 import SquaresAndCirlces.ElementInfo.Coordinate;
+import SquaresAndCirlces.Shapes.FigureSelector;
+import SquaresAndCirlces.Shapes.iDrawStrategy;
+import SquaresAndCirlces.Shapes.iFigure;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -19,6 +22,7 @@ public class DrawingPanel extends javax.swing.JPanel implements MouseListener, M
     private boolean canWeDraw = false;
     private ElementInfo currentDrawingElementInfo = new ElementInfo();
     private ArrayList currentDrawingCoordinates = new ArrayList();
+    private iDrawStrategy drawStrategy;
 
 // ============ Конструктор =============
     public DrawingPanel() {
@@ -50,19 +54,19 @@ public class DrawingPanel extends javax.swing.JPanel implements MouseListener, M
 
         super.paintComponent(g);
         g.setColor(myColor);
-//            ArrayList<Coordinate> temp = new ArrayList();
+        
+        FigureSelector figureSelector = new FigureSelector();
+        iFigure figure = figureSelector.getFigure(currentShape);
+        figure.draw(); 
+        
+        
         for (int i = 0; i < elementsInfo.size(); i++) {
-//            temp = elementsInfo.get(i).getDrawingCoordinates();
-
             if (currentShape.equals("Квадрат")) {
                 g.fillRect(elementsInfo.get(i).getX() - elementsInfo.get(i).getSize() / 2, elementsInfo.get(i).getY() - elementsInfo.get(i).getSize() / 2, elementsInfo.get(i).getSize(), elementsInfo.get(i).getSize());
-//                g.fillRect(temp.get(i).arrayX, temp.get(i).arrayX, elementsInfo.get(i).getSize(), elementsInfo.get(i).getSize());
             } else {
                 g.fillOval(elementsInfo.get(i).getX() - elementsInfo.get(i).getSize() / 2, elementsInfo.get(i).getY() - elementsInfo.get(i).getSize() / 2, elementsInfo.get(i).getSize(), elementsInfo.get(i).getSize());
             }
         }
-
-//        g.fillRect(X, Y, 50, 50);
     }
 
     @Override
@@ -135,24 +139,6 @@ public class DrawingPanel extends javax.swing.JPanel implements MouseListener, M
         repaint();
     }
 
-    // ============ Геттеры и Сеттеры =======
-//    public int getX() {
-//        return X;
-//    }
-//
-//    public void setX(int X) {
-//        this.X = X;
-//    }
-//
-    //          КАК ТАК!!!!??? Почему не работает с обычными геттерами и сеттерами?
-    //
-//    public int getY() {
-//        return Y;
-//    }
-//
-//    public void setY(int Y) {
-//        this.Y = Y;
-//    }
     public String getCurrentShape() {
         return currentShape;
     }

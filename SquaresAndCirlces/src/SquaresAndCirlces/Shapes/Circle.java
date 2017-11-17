@@ -1,12 +1,11 @@
-
 package SquaresAndCirlces.Shapes;
 
+import java.awt.Graphics;
 
-public class Circle implements iFigure {
+public class Circle implements iDrawStrategy {
 
     @Override
-    public void draw() {
-       g.fillOval(elementsInfo.get(i).getX() - elementsInfo.get(i).getSize() / 2, elementsInfo.get(i).getY() - elementsInfo.get(i).getSize() / 2, elementsInfo.get(i).getSize(), elementsInfo.get(i).getSize());
-            }
-    
+    public void draw(Graphics g, int X, int Y, int size) {
+        g.fillOval(X - size / 2, Y - size / 2, size, size);
+    }
 }

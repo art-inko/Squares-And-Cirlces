@@ -220,23 +220,7 @@ public class MyJFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-//        ArrayList<ElementInfo> temp = drawingPanel.getElementsInfo();
-//        for (int i = 0; i < temp.size(); i++) {
-//            System.out.println(i + ". X = " + temp.get(i).getX());
-//            System.out.println(i + ". Y = " + temp.get(i).getY());
-//        }
 
-
-
-//        ElementInfo temp = new ElementInfo();
-//        temp = drawingPanel.getCurrentDrawingElementInfo();
-//        ArrayList<ElementInfo.Coordinate> tempArray = new ArrayList();
-//        tempArray = temp.getDrawingCoordinates();
-//
-//        for (int i = 0; i < tempArray.size(); i++) {
-//            System.out.println(i + ". X = " + tempArray.get(i).getArrayX());
-//            System.out.println(i + ". Y = " + tempArray.get(i).getArrayY());
-//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
@@ -285,6 +269,8 @@ public class MyJFrame extends javax.swing.JFrame {
     }
 
     public void radioButtonStateChanged() {
+        // set drawing Strategy
+        // if делаем тут
         currentShape = getSelectedButtonText(buttonGroup1);
         System.out.println(currentShape);
         drawingPanel.setCurrentShape(currentShape);
