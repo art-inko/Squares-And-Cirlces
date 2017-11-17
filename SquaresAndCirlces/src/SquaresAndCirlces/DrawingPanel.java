@@ -1,9 +1,6 @@
 package SquaresAndCirlces;
 
-import SquaresAndCirlces.ElementInfo.Coordinate;
-import SquaresAndCirlces.Shapes.FigureSelector;
 import SquaresAndCirlces.Shapes.iDrawStrategy;
-import SquaresAndCirlces.Shapes.iFigure;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -21,7 +18,6 @@ public class DrawingPanel extends javax.swing.JPanel implements MouseListener, M
     private Color myColor = Color.BLUE;
     private boolean canWeDraw = false;
     private ElementInfo currentDrawingElementInfo = new ElementInfo();
-    private ArrayList currentDrawingCoordinates = new ArrayList();
     private iDrawStrategy drawStrategy;
 
 // ============ Конструктор =============
@@ -54,12 +50,7 @@ public class DrawingPanel extends javax.swing.JPanel implements MouseListener, M
 
         super.paintComponent(g);
         g.setColor(myColor);
-        
-        FigureSelector figureSelector = new FigureSelector();
-        iFigure figure = figureSelector.getFigure(currentShape);
-        figure.draw(); 
-        
-        
+
         for (int i = 0; i < elementsInfo.size(); i++) {
             if (currentShape.equals("Квадрат")) {
                 g.fillRect(elementsInfo.get(i).getX() - elementsInfo.get(i).getSize() / 2, elementsInfo.get(i).getY() - elementsInfo.get(i).getSize() / 2, elementsInfo.get(i).getSize(), elementsInfo.get(i).getSize());
@@ -86,32 +77,19 @@ public class DrawingPanel extends javax.swing.JPanel implements MouseListener, M
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (!canWeDraw) {
-            currentDrawingElementInfo.setDrawingCoordinates(currentDrawingCoordinates);
-            elementsInfo.add(currentDrawingElementInfo);
-        }
+
     }
 
     @Override
-    public void mouseEntered(MouseEvent e
-    ) {
+    public void mouseEntered(MouseEvent e) {
     }
 
     @Override
-    public void mouseExited(MouseEvent e
-    ) {
+    public void mouseExited(MouseEvent e) {
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (canWeDraw) {
-            ElementInfo.Coordinate coordinate = currentDrawingElementInfo.new Coordinate(e.getX(), e.getY());
-            System.out.println("X = " + coordinate.getArrayX());
-            System.out.println("Y = " + coordinate.getArrayY());
-            currentDrawingCoordinates.add(coordinate);
-//                currentElementInfo.drawingCoordinates.add(new Coordinate(arrayX.set(, arrayY.set(e.getY()))));
-
-        }
     }
 
     @Override
@@ -178,13 +156,4 @@ public class DrawingPanel extends javax.swing.JPanel implements MouseListener, M
     public void setCurrentDrawingElementInfo(ElementInfo currentDrawingElementInfo) {
         this.currentDrawingElementInfo = currentDrawingElementInfo;
     }
-
-    public ArrayList getCurrentDrawingCoordinates() {
-        return currentDrawingCoordinates;
-    }
-
-    public void setCurrentDrawingCoordinates(ArrayList currentDrawingCoordinates) {
-        this.currentDrawingCoordinates = currentDrawingCoordinates;
-    }
-
 }
