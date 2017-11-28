@@ -14,7 +14,6 @@ public class DrawingPanel extends javax.swing.JPanel implements MouseListener {
     private ArrayList<ElementInfo> elementsInfo = new ArrayList();
     private int currentSize;
     private Color myColor = Color.BLUE;
-    private ElementInfo currentDrawingElementInfo = new ElementInfo();
     private iDrawStrategy drawStrategy = new Square();
 
     @SuppressWarnings("unchecked")
